@@ -1,0 +1,21 @@
+{
+    "name": "wucdbm/php-cs-fixers",
+    "type": "library",
+    "description": "Fixers for friendsofphp/php-cs-fixer",
+    "keywords": ["php cs", "php cs fixer", "blank line after class opening"],
+    "authors": [
+        {
+            "name": "Martin Kirilov",
+            "email": "wucdbm@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "~7.0",
+        "friendsofphp/php-cs-fixer": "~2.8"
+    },
+    "autoload": {
+        "psr-4": { "Wucdbm\\PhpCsFixer\\": "src" }
+    },
+    "license": "GPL-3.0"
+}
