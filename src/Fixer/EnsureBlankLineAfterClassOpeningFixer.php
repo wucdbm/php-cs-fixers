@@ -10,7 +10,9 @@ use PhpCsFixer\Tokenizer\Token;
 use PhpCsFixer\Tokenizer\Tokens;
 
 /**
- * @author Ceeram <ceeram@cakephp.org>
+ * @author Wucdbm <wucdbm@gmail.com>
+ *
+ * Originally NoBlankLinesAfterClassOpeningFixer by Ceeram <ceeram@cakephp.org>
  */
 final class EnsureBlankLineAfterClassOpeningFixer extends AbstractFixer implements WhitespacesAwareFixerInterface {
 
