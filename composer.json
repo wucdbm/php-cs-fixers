@@ -14,8 +14,23 @@
         "php": "~7.0",
         "friendsofphp/php-cs-fixer": "~2.8"
     },
+    "require-dev": {
+        "johnkary/phpunit-speedtrap": "^1.1 || ^2.0@dev",
+        "justinrainbow/json-schema": "^5.0",
+        "mikey179/vfsStream": "^1.6",
+        "php-coveralls/php-coveralls": "^2.0",
+        "php-cs-fixer/accessible-object": "^1.0",
+        "phpunit/phpunit": "^5.7.23 || ^6.4.3",
+        "symfony/phpunit-bridge": "^3.2.2 || ^4.0"
+    },
     "autoload": {
         "psr-4": { "Wucdbm\\PhpCsFixer\\": "src" }
+    },
+    "autoload-dev": {
+        "psr-4": { "Wucdbm\\PhpCsFixer\\Tests\\": "tests/" }
+    },
+    "config": {
+        "bin-dir": "bin"
     },
     "license": "GPL-3.0"
 }

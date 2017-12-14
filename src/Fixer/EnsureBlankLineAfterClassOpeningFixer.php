@@ -33,6 +33,7 @@ final class EnsureBlankLineAfterClassOpeningFixer extends AbstractFixer implemen
                 new CodeSample(
                     '<?php
 final class Sample {
+
     protected function foo()
     {
     }
@@ -55,18 +56,39 @@ final class Sample {
             $startBraceIndex = $tokens->getNextTokenOfKind($index, ['{']);
 
             $whitespace = $this->createBlankLine($tokens, $startBraceIndex);
-            $nextTokenIndex = $startBraceIndex + 1;
+            $whiteSpaceIndex = $startBraceIndex + 1;
 
-            if (!$tokens[$nextTokenIndex]->isWhitespace()) {
+            if (!$tokens[$whiteSpaceIndex]->isWhitespace()) {
                 // If there is no white space at all, we need two lines and a single indentation
                 // But in case the declaration is wrapped in an if statement,
-                // Then we need the current indentation plus one additional
-                $tokens->insertAt($nextTokenIndex, new Token([T_WHITESPACE, $whitespace]));
+                // Then we need the current indentation
+
+                $closingBraceIndex = $startBraceIndex + 1;
+                $isClosingBrace = '}' === $tokens[$closingBraceIndex]->getContent();
+
+                if (!$isClosingBrace) {
+                    // Plus one additional if the next token is not a closing brace
+                    // If there is no white space after the opening brace
+                    // And the next token is NOT a closing brace
+                    // Then we need an additional indent
+                    $whitespace .= $this->whitespacesConfig->getIndent();
+                }
+
+                $tokens->insertAt($whiteSpaceIndex, new Token([T_WHITESPACE, $whitespace]));
             } else {
                 // If there is any white space, then we can just replace it
                 // What we need is two line endings, the class declaration indentation
-                // And another indent for any following token (property, constant, method, etc)
-                $tokens[$nextTokenIndex] = new Token([T_WHITESPACE, $whitespace]);
+                $closingBraceIndex = $whiteSpaceIndex + 1;
+                $isClosingBrace = '}' === $tokens[$closingBraceIndex]->getContent();
+
+                if (!$isClosingBrace) {
+                    // And another indent for any following NON-WHITESPACE Token (property, constant, method, etc)
+                    // But ONLY IF the next token is NOT a closing brace
+                    // Which would need to remain at its class declaration indentation
+                    $whitespace .= $this->whitespacesConfig->getIndent();
+                }
+
+                $tokens[$whiteSpaceIndex] = new Token([T_WHITESPACE, $whitespace]);
             }
         }
     }
@@ -74,7 +96,9 @@ final class Sample {
     private function createBlankLine(Tokens $tokens, $startBraceIndex) {
         $classDeclarationIndent = $this->detectIndent($tokens, $startBraceIndex);
 
-        return $this->whitespacesConfig->getLineEnding() . $this->whitespacesConfig->getLineEnding() . $classDeclarationIndent . $this->whitespacesConfig->getIndent();
+        return $this->whitespacesConfig->getLineEnding() .
+            $this->whitespacesConfig->getLineEnding() .
+            $classDeclarationIndent;
     }
 
     public function getPriority() {
