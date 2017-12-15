@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Wucdbm PhpCSFixers package.
+ *
+ * (c) Martin Kirilov <wucdbm@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Wucdbm\PhpCsFixer\Tests\Fixer;
 
 use PhpCsFixer\Tests\Test\AbstractFixerTestCase;
@@ -39,7 +48,7 @@ class EnsureBlankLineAfterClassOpeningFixerTest extends AbstractFixerTestCase {
 
     public function provideFixCases() {
         return [
-            'Empty Class Same Line'                                         => [
+            'Empty Class Same Line' => [
                 '<?php
 
 class Test {
@@ -49,7 +58,7 @@ class Test {
 
 class Test {}'
             ],
-            'Empty Class Two Lines'                                         => [
+            'Empty Class Two Lines' => [
                 '<?php
 
 class Test {
@@ -60,7 +69,7 @@ class Test {
 class Test {
 }'
             ],
-            'Empty Class Same Line Indented'                                => [
+            'Empty Class Same Line Indented' => [
                 '<?php
 
 if (!class_exists(\'Some\Name\Space\')) {
@@ -74,7 +83,7 @@ if (!class_exists(\'Some\Name\Space\')) {
     class Test {}
 }'
             ],
-            'Empty Class Two Lines Indented'                                => [
+            'Empty Class Two Lines Indented' => [
                 '<?php
 
 if (!class_exists(\'Some\Name\Space\')) {
@@ -89,7 +98,7 @@ if (!class_exists(\'Some\Name\Space\')) {
     }
 }'
             ],
-            'Non-WS Token Immediately After Class Declaration'              => [
+            'Non-WS Token Immediately After Class Declaration' => [
                 '<?php
 
 class Test {
@@ -103,7 +112,7 @@ class Test {/** @var EntityReferenceHelper */
     private $referenceHelper;
 }'
             ],
-            'Non-WS Token Immediately After Class Declaration Indented'     => [
+            'Non-WS Token Immediately After Class Declaration Indented' => [
                 '<?php
 
 if (!class_exists(\'Some\Name\Space\')) {
@@ -121,7 +130,7 @@ if (!class_exists(\'Some\Name\Space\')) {
 }
 }'
             ],
-            'WS Token After Class Opening'                                  => [
+            'WS Token After Class Opening' => [
                 '<?php
 
 class Test {
@@ -135,7 +144,7 @@ class Test {     /** @var EntityReferenceHelper */
     private $referenceHelper;
 }'
             ],
-            'WS Token After Class Opening Indented'                         => [
+            'WS Token After Class Opening Indented' => [
                 '<?php
 
 if (!class_exists(\'Some\Name\Space\')) {
@@ -153,7 +162,7 @@ if (!class_exists(\'Some\Name\Space\')) {
     }
 }'
             ],
-            'Lots Of WS After Class Opening'                                => [
+            'Lots Of WS After Class Opening' => [
                 '<?php
 
 class Test {
@@ -171,7 +180,7 @@ class Test {
     private $referenceHelper;
 }'
             ],
-            'Lots Of WS After Class Opening Indented'                       => [
+            'Lots Of WS After Class Opening Indented' => [
                 '<?php
 
 if (!class_exists(\'Some\Name\Space\')) {
@@ -193,7 +202,7 @@ if (!class_exists(\'Some\Name\Space\')) {
     }
 }'
             ],
-            'Lots Of WS And Wrog Indentation of Next NON-WS Token'          => [
+            'Lots Of WS And Wrog Indentation of Next NON-WS Token' => [
                 '<?php
 
 class Test {
@@ -245,7 +254,7 @@ if (!class_exists(\'Some\Name\Space\')) {
     }
 }'
             ],
-            'More Than One Indentation Extra Lines'                         => [
+            'More Than One Indentation Extra Lines' => [
                 '<?php
 
 if (!class_exists(\'Some\Name\Space\')) {
@@ -270,7 +279,7 @@ if (!class_exists(\'Some\Name\Space\')) {
     }
 }'
             ],
-            'More Than One Indentation No WS'                               => [
+            'More Than One Indentation No WS' => [
                 '<?php
 
 if (!class_exists(\'Some\Name\Space\')) {
@@ -292,7 +301,7 @@ if (!class_exists(\'Some\Name\Space\')) {
     }
 }'
             ],
-            'More Than One Indentation No Lines With WS'                    => [
+            'More Than One Indentation No Lines With WS' => [
                 '<?php
 
 if (!class_exists(\'Some\Name\Space\')) {

@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Wucdbm PhpCSFixers package.
+ *
+ * (c) Martin Kirilov <wucdbm@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Wucdbm\PhpCsFixer\Fixer;
 
 use PhpCsFixer\AbstractFixer;
@@ -96,8 +105,8 @@ final class Sample {
     private function createBlankLine(Tokens $tokens, $startBraceIndex) {
         $classDeclarationIndent = $this->detectIndent($tokens, $startBraceIndex);
 
-        return $this->whitespacesConfig->getLineEnding() .
-            $this->whitespacesConfig->getLineEnding() .
+        return $this->whitespacesConfig->getLineEnding().
+            $this->whitespacesConfig->getLineEnding().
             $classDeclarationIndent;
     }
 
@@ -107,11 +116,11 @@ final class Sample {
     }
 
     public function getName() {
-        return 'Wucdbm/' . parent::getName();
+        return 'Wucdbm/'.parent::getName();
     }
 
     /**
-     * This has been blatantly stolen from BracesFixer and does an excellent job
+     * This has been blatantly stolen from BracesFixer and does an excellent job.
      *
      * @param Tokens $tokens
      * @param int    $index
