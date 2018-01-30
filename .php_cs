@@ -1,6 +1,8 @@
 <?php
 
-$headerComment = <<<COMMENT
+use Wucdbm\PhpCsFixer\Config\ConfigFactory;
+
+$copyright = <<<COMMENT
 This file is part of the Wucdbm PhpCSFixers package.
 
 (c) Martin Kirilov <wucdbm@gmail.com>
@@ -14,24 +16,6 @@ $finder = PhpCsFixer\Finder::create()->in([
     __DIR__ . '/tests'
 ]);
 
-return PhpCsFixer\Config::create()
-    ->registerCustomFixers([
-        new \Wucdbm\PhpCsFixer\Fixer\EnsureBlankLineAfterClassOpeningFixer()
-    ])
-    ->setRules([
-        '@Symfony'                                     => true,
-        'no_blank_lines_after_class_opening'           => false,
-        'Wucdbm/ensure_blank_line_after_class_opening' => true,
-        'array_syntax'                                 => [
-            'syntax' => 'short'
-        ],
-        'braces'                                       => [
-            'position_after_functions_and_oop_constructs' => 'same'
-        ],
-        'trailing_comma_in_multiline_array'            => false,
-        'header_comment'                               => [
-            'header' => $headerComment
-        ]
-    ])
+return ConfigFactory::createCopyrightedConfig($copyright)
     ->setUsingCache(false)
     ->setFinder($finder);
