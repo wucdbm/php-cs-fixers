@@ -12,19 +12,25 @@
 namespace Wucdbm\PhpCsFixer\Config;
 
 use PhpCsFixer\Config;
+use PhpCsFixer\Finder;
 use Wucdbm\PhpCsFixer\Fixer\EnsureBlankLineAfterClassOpeningFixer;
 
 class ConfigFactory {
 
-    public static function createConfig(): Config {
+    public static function createConfig($dirs): Config {
+        $finder = Finder::create()->in($dirs);
+
         return Config::create()
             ->registerCustomFixers([
                 new EnsureBlankLineAfterClassOpeningFixer()
             ])
-            ->setRules(self::getConfig());
+            ->setRules(self::getConfig())
+            ->setFinder($finder);
     }
 
-    public static function createCopyrightedConfig(string $copyright): Config {
+    public static function createCopyrightedConfig($dirs, string $copyright): Config {
+        $finder = Finder::create()->in($dirs);
+
         $config = self::getConfig();
         $config['header_comment'] = [
             'header' => $copyright
@@ -34,7 +40,8 @@ class ConfigFactory {
             ->registerCustomFixers([
                 new EnsureBlankLineAfterClassOpeningFixer()
             ])
-            ->setRules($config);
+            ->setRules($config)
+            ->setFinder($finder);
     }
 
     protected static function getConfig(): array {

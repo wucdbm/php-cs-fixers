@@ -11,11 +11,8 @@ For the full copyright and license information, please view the LICENSE
 file that was distributed with this source code.
 COMMENT;
 
-$finder = PhpCsFixer\Finder::create()->in([
+return ConfigFactory::createCopyrightedConfig([
     __DIR__ . '/src',
     __DIR__ . '/tests'
-]);
-
-return ConfigFactory::createCopyrightedConfig($copyright)
-    ->setUsingCache(false)
-    ->setFinder($finder);
+], $copyright)
+    ->setUsingCache(false);
